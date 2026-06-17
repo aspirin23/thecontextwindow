@@ -1,11 +1,201 @@
 /* ============================================
    THE CONTEXT WINDOW — layout.css
    Nav, footer, page-level layout
-   STATUS: placeholder — full nav/footer build pending
    ============================================ */
 
 .site-wrap {
   max-width: 720px;
   margin: 0 auto;
   padding: var(--space-xl) var(--space-md);
+}
+
+/* ============================================
+   NAVIGATION
+   Sticky, hides on scroll-down, reappears on
+   scroll-up. Sits directly under the terminal bar.
+   Direction detection handled in cursor.js.
+   ============================================ */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  transition: transform 0.25s ease;
+}
+
+/* The terminal bar sits above the nav. The nav's sticky
+   offset accounts for the terminal bar's rendered height
+   so the nav docks directly beneath it, not under it. */
+:root {
+  --terminal-bar-height: 2.25rem;
+}
+
+.site-nav {
+  top: var(--terminal-bar-height);
+}
+
+/* Class toggled by JS when scrolling down past threshold */
+.site-nav.nav-hidden {
+  transform: translateY(-100%);
+}
+
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+}
+
+.nav-site-name {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.nav-site-name a {
+  display: block;
+}
+
+/* Desktop nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.nav-links a {
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text);
+  transition: color 0.15s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--color-accent);
+}
+
+/* Hamburger toggle button — hidden on desktop */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 22px;
+}
+
+.nav-toggle .bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle[aria-expanded="true"] .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---- Mobile breakpoint ---- */
+@media (max-width: 640px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+
+  .nav-links.nav-open {
+    max-height: 240px;
+  }
+
+  .nav-links a {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    background-color: var(--color-bg);
+  }
+}
+
+/* ============================================
+   FOOTER
+   Minimal — site name, tagline, two links.
+   ============================================ */
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-2xl);
+  padding: var(--space-lg) var(--space-md);
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.footer-identity .footer-site-name {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.footer-identity .footer-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  margin-top: 0.25rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-accent);
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  text-decoration: underline;
 }
