@@ -87,3 +87,169 @@
   opacity: 0.6;
 }
 
+/* ============================================
+   SITE BRAND
+   Home page only. Sits above the hero issue.
+   ============================================ */
+
+.site-brand {
+  margin-bottom: var(--space-2xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-brand-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+
+.site-brand-title {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+}
+
+.site-brand-title .accent {
+  color: var(--color-accent);
+}
+
+.site-brand-tagline {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--color-text);
+  opacity: 0.8;
+  max-width: 520px;
+}
+
+/* ============================================
+   HERO ISSUE
+   Home page only. Mini-article treatment for the
+   current/latest issue. Reuses .issue-badge from
+   base.css. Adapts gracefully to an unpublished
+   issue — no fabricated date, byline, or pull-quote
+   when those don't exist yet.
+   ============================================ */
+
+.hero-issue {
+  margin-bottom: var(--space-2xl);
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.hero-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+.hero-title {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-sm);
+}
+
+.hero-hook {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--color-text);
+  opacity: 0.85;
+  max-width: 600px;
+  margin-bottom: var(--space-md);
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero-meta .pending {
+  opacity: 0.6;
+}
+
+.hero-meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.hero-status {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin-bottom: var(--space-md);
+}
+
+.hero-cta {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  cursor: default;
+}
+
+.hero-cta.is-live {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.hero-cta.is-live:hover,
+.hero-cta.is-live:focus-visible {
+  background-color: rgba(232, 131, 42, 0.08);
+}
+
+/* ============================================
+   HOME PAGE SECTION HEADING
+   Used above the "Recent Issues" preview list.
+   ============================================ */
+
+.section-heading {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+}
+
+.view-archive-link {
+  display: inline-block;
+  margin-top: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-accent);
+}
+
+.view-archive-link:hover,
+.view-archive-link:focus-visible {
+  text-decoration: underline;
+}
+
