@@ -253,3 +253,40 @@
   text-decoration: underline;
 }
 
+/* ============================================
+   ABOUT PAGE
+   Simple bio block + a short list of amber text
+   links underneath (spec: "styled as amber text
+   links, not buttons" — reuses the same visual
+   language as .footer-links rather than inventing
+   a new link treatment).
+   ============================================ */
+
+.about-content h1 {
+  margin-bottom: var(--space-lg);
+}
+
+.about-content p {
+  margin-bottom: var(--space-md);
+  max-width: 640px;
+}
+
+.about-links {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.about-links a {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-accent);
+}
+
+.about-links a:hover,
+.about-links a:focus-visible {
+  text-decoration: underline;
+}
+

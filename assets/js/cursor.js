@@ -1,93 +1,39 @@
 /* THE CONTEXT WINDOW — cursor.js
-   STATUS: in use.
+   STATUS: intentionally empty.
 
-   NOTE ON FILENAME: the design spec named this file for the
-   terminal bar cursor blink, but that blink is handled entirely
-   via CSS (@keyframes blink in base.css) and needs no JS. The
-   spec also lists this file as a candidate for general "scroll
-   behaviour" JS, so it has been repurposed for that role rather
-   than introducing a fifth, unlisted JS file. It now handles:
+   The terminal bar's blinking cursor is handled entirely via CSS
+   (@keyframes blink in base.css) — no JS required for it.
 
-   1. Nav hide-on-scroll-down / reveal-on-scroll-up
-   2. Mobile hamburger menu toggle
+   HISTORY: this file previously held nav scroll-hide-on-scroll
+   and hamburger-toggle logic, dating from before the terminal
+   bar and site nav were merged into a single bar. That logic
+   has been removed for the following reasons:
 
-   Flagged per output rules as a deviation from the literal file
-   description, not from the file's presence in the structure.
+   1. Hamburger toggle was DUPLICATED in nav.js, causing both
+      scripts to attach a click listener to the same button —
+      a single tap toggled the menu open then immediately closed
+      it again. nav.js is the correct, sole owner of that logic
+      now (it also owns the Find Me dropdown, so hamburger
+      handling lives alongside related nav interaction code).
+
+   2. The scroll-hide/reveal behaviour targeted `.site-nav`, a
+      class removed when the nav was merged into `.terminal-bar`.
+      That code was already dead (querySelector returned null on
+      every page). Decision made this session: do NOT port this
+      behaviour to the merged bar — the terminal bar stays fixed
+      and always visible. If this is revisited later, scroll-hide
+      logic should be added fresh, scoped to `.terminal-bar`, and
+      should live in nav.js alongside the rest of nav behaviour
+      rather than back in this file.
+
+   3. setTerminalBarHeight() measured `.terminal-bar` height and
+      wrote it to a `--terminal-bar-height` CSS custom property.
+      That property was removed from layout.css during the same
+      merge and is no longer referenced anywhere in CSS, so the
+      measurement had no consumer. Removed as dead code.
+
+   This file is kept in the project (rather than deleted) only
+   because it's named in the original file/folder structure spec.
+   If a future feature genuinely needs cursor-specific JS, it
+   belongs here. Until then, there is nothing to do in this file.
 */
-
-(function () {
-  'use strict';
-
-  /* ---- 0. Set --terminal-bar-height precisely from actual
-     rendered height, rather than relying on a hardcoded CSS
-     guess that can drift out of sync with font/padding changes. ---- */
-  var terminalBar = document.querySelector('.terminal-bar');
-
-  function setTerminalBarHeight() {
-    if (terminalBar) {
-      var height = terminalBar.getBoundingClientRect().height;
-      document.documentElement.style.setProperty(
-        '--terminal-bar-height',
-        height + 'px'
-      );
-    }
-  }
-
-  setTerminalBarHeight();
-  window.addEventListener('resize', setTerminalBarHeight);
-
-  /* ---- shared element references ---- */
-  var nav = document.querySelector('.site-nav');
-  var navToggle = document.querySelector('.nav-toggle');
-  var navLinks = document.querySelector('.nav-links');
-
-  /* ---- 1. Nav hide/show on scroll direction ---- */
-  if (nav) {
-    var lastScrollY = window.scrollY;
-    var scrollThreshold = 10; // ignore tiny jitters
-    var hideAfter = 80; // don't hide until past this scroll depth
-
-    window.addEventListener('scroll', function () {
-      var currentScrollY = window.scrollY;
-      var delta = currentScrollY - lastScrollY;
-
-      // don't hide the nav while the mobile menu is open —
-      // otherwise an open dropdown slides off-screen mid-interaction
-      if (navLinks && navLinks.classList.contains('nav-open')) {
-        lastScrollY = currentScrollY;
-        return;
-      }
-
-      if (Math.abs(delta) < scrollThreshold) {
-        return;
-      }
-
-      if (currentScrollY > hideAfter && delta > 0) {
-        // scrolling down past threshold — hide nav
-        nav.classList.add('nav-hidden');
-      } else if (delta < 0) {
-        // scrolling up — reveal nav
-        nav.classList.remove('nav-hidden');
-      }
-
-      lastScrollY = currentScrollY;
-    }, { passive: true });
-  }
-
-  /* ---- 2. Hamburger menu toggle ---- */
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', function () {
-      var isOpen = navLinks.classList.toggle('nav-open');
-      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-
-    // close menu when a link is tapped (mobile UX)
-    navLinks.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        navLinks.classList.remove('nav-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
-})();
-
