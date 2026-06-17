@@ -12,29 +12,32 @@
 </head>
 <body>
 
-  <div class="terminal-bar">
-    &gt; loading consciousness...<span class="cursor">|</span>
-  </div>
-
-  <nav class="site-nav">
-    <div class="nav-inner">
-      <div class="nav-site-name">
-        <a href="index.html">The Context Window</a>
-      </div>
-
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-
-      <div class="nav-links">
-        <a href="archive.html">Archive</a>
-        <a href="about.html">About</a>
-        <a href="find-me.html">Find Me</a>
-      </div>
+  <header class="terminal-bar">
+    <div class="terminal-prompt">
+      &gt; loading consciousness...<span class="cursor">|</span>
     </div>
-  </nav>
+
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="archive.html">Archive</a>
+      <a href="about.html">About</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-trigger" aria-expanded="false">
+          Find Me <span class="caret">▾</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="https://linkedin.com/in/PLACEHOLDER" target="_blank" rel="noopener">LinkedIn <span class="external-arrow">↗</span></a>
+          <a href="https://github.com/PLACEHOLDER" target="_blank" rel="noopener">GitHub <span class="external-arrow">↗</span></a>
+        </div>
+      </div>
+    </nav>
+  </header>
 
   <main class="site-wrap">
 
@@ -121,5 +124,6 @@
   </footer>
 
   <script src="assets/js/cursor.js"></script>
+  <script src="assets/js/nav.js"></script>
 </body>
 </html>

@@ -11,58 +11,13 @@
 
 /* ============================================
    NAVIGATION
-   Sticky, hides on scroll-down, reappears on
-   scroll-up. Sits directly under the terminal bar.
-   Direction detection handled in cursor.js.
+   Lives inside the merged .terminal-bar (see base.css).
+   No longer a separate sticky bar — the terminal bar
+   itself is the only sticky element, so scroll-hide
+   behaviour has been removed (nothing to hide separately
+   from the prompt anymore).
    ============================================ */
 
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 90;
-  background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  transition: transform 0.25s ease;
-}
-
-/* The terminal bar sits above the nav. The nav's sticky
-   offset accounts for the terminal bar's rendered height
-   so the nav docks directly beneath it, not under it. */
-:root {
-  --terminal-bar-height: 2.25rem;
-}
-
-.site-nav {
-  top: var(--terminal-bar-height);
-}
-
-/* Class toggled by JS when scrolling down past threshold */
-.site-nav.nav-hidden {
-  transform: translateY(-100%);
-}
-
-.nav-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-sm) var(--space-md);
-}
-
-.nav-site-name {
-  font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: -0.01em;
-}
-
-.nav-site-name a {
-  display: block;
-}
-
-/* Desktop nav links */
 .nav-links {
   display: flex;
   align-items: center;
@@ -72,7 +27,7 @@
 .nav-links a {
   font-family: var(--font-head);
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-text);
@@ -84,26 +39,111 @@
   color: var(--color-accent);
 }
 
+.nav-links .external-arrow {
+  display: inline-block;
+  margin-left: 0.2em;
+  font-size: 0.9em;
+}
+
+/* ---- Find Me dropdown ----
+   Desktop: opens on hover/focus via CSS.
+   Mobile: toggled via JS (.is-open class), since
+   touch devices have no hover state. */
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-dropdown-trigger .caret {
+  display: inline-block;
+  font-size: 0.7em;
+  transition: transform 0.15s ease;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--space-sm);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  min-width: 160px;
+  padding: var(--space-xs) 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  z-index: 110;
+}
+
+.nav-dropdown-menu a {
+  display: block;
+  width: 100%;
+  padding: var(--space-xs) var(--space-md);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible {
+  background-color: var(--color-bg);
+}
+
+/* Desktop hover/focus open */
+@media (min-width: 641px) {
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-dropdown:hover .caret,
+  .nav-dropdown:focus-within .caret {
+    transform: rotate(180deg);
+  }
+}
+
+/* Mobile/touch: JS-toggled open state */
+.nav-dropdown.is-open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-dropdown.is-open .caret {
+  transform: rotate(180deg);
+}
+
 /* Hamburger toggle button — hidden on desktop */
 .nav-toggle {
   display: none;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 28px;
-  height: 22px;
+  width: 24px;
+  height: 18px;
 }
 
 .nav-toggle .bar {
   display: block;
   width: 100%;
   height: 2px;
-  background-color: var(--color-text);
+  background-color: var(--color-accent);
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .nav-toggle[aria-expanded="true"] .bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(6px) rotate(45deg);
 }
 
 .nav-toggle[aria-expanded="true"] .bar:nth-child(2) {
@@ -111,7 +151,7 @@
 }
 
 .nav-toggle[aria-expanded="true"] .bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 /* ---- Mobile breakpoint ---- */
@@ -136,7 +176,7 @@
   }
 
   .nav-links.nav-open {
-    max-height: 240px;
+    max-height: 320px;
   }
 
   .nav-links a {
@@ -147,6 +187,38 @@
   .nav-links a:hover,
   .nav-links a:focus-visible {
     background-color: var(--color-bg);
+  }
+
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .nav-dropdown-trigger {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    justify-content: space-between;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin-top: 0;
+    background-color: var(--color-bg);
+    min-width: 0;
+    /* mobile open state is JS-toggled, see .is-open above;
+       reset the desktop hidden-by-default state so the
+       parent .nav-links max-height transition can reveal it */
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease;
+  }
+
+  .nav-dropdown.is-open .nav-dropdown-menu {
+    max-height: 160px;
   }
 }
 
