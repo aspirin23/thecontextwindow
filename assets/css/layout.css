@@ -1,0 +1,11 @@
+/* ============================================
+   THE CONTEXT WINDOW — layout.css
+   Nav, footer, page-level layout
+   STATUS: placeholder — full nav/footer build pending
+   ============================================ */
+
+.site-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+}

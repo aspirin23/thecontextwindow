@@ -1,12 +1,14 @@
 /* ============================================
    THE CONTEXT WINDOW — base.css
-   Design tokens, reset, global typography
+   Design tokens, reset, body, typography
    ============================================ */
 
+/* ---- Fonts ---- */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Lora:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
 
+/* ---- Design tokens ---- */
 :root {
-  /* Colour tokens */
+  /* Colour */
   --color-bg: #0D1117;
   --color-text: #E8E6DF;
   --color-accent: #E8832A;
@@ -23,24 +25,50 @@
   --space-2xl: 6rem;
 
   /* Fonts */
-  --font-headline: 'Space Grotesk', sans-serif;
+  --font-head: 'Space Grotesk', sans-serif;
   --font-body: 'Lora', serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Reset */
+/* ---- Reset ---- */
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* ---- Body / graph paper grid ---- */
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -49,37 +77,19 @@ body {
   line-height: 1.7;
   min-height: 100vh;
 
-  /* Graph paper grid */
+  /* Subtle graph paper grid — very low opacity, fine lines */
   background-image:
     linear-gradient(rgba(107, 114, 128, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(107, 114, 128, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-size: 32px 32px;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
-a {
-  color: var(--color-accent);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
+/* ---- Headings ---- */
 h1, h2, h3, h4 {
-  font-family: var(--font-headline);
+  font-family: var(--font-head);
   font-weight: 600;
   line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 h1 {
@@ -90,35 +100,60 @@ h2 {
   font-size: clamp(1.5rem, 3vw, 2.25rem);
 }
 
-.mono {
+/* ---- Metadata / mono text ---- */
+.mono,
+.meta {
   font-family: var(--font-mono);
   font-size: 0.875rem;
-}
-
-.text-muted {
   color: var(--color-muted);
 }
 
-.text-accent {
-  color: var(--color-accent);
-}
-
-.eyebrow {
+/* ---- Terminal bar (present on every page) ---- */
+.terminal-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-xs) var(--space-md);
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: var(--color-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: var(--space-md);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+.terminal-bar .cursor {
+  display: inline-block;
+  margin-left: 0.25ch;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* ---- Section divider — amber pixel line ---- */
+hr.divider {
+  border: none;
+  border-top: 1px solid var(--color-accent);
+  width: 100%;
+  margin: var(--space-xl) 0;
+}
+
+/* ---- Issue number badge ---- */
+.issue-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---- Selection ---- */
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
 }
