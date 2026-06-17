@@ -1,5 +1,89 @@
 /* ============================================
    THE CONTEXT WINDOW — components.css
    Cards, badges, terminal bar refinements, dividers
-   STATUS: placeholder — components built in dedicated session
    ============================================ */
+
+/* ============================================
+   ISSUE CARD
+   Used in the archive's stacked list. Same markup
+   pattern will be reused for the home page's
+   archive grid and hero block — those layouts will
+   wrap this component differently (grid vs hero)
+   without changing the card's internal structure.
+   ============================================ */
+
+.issue-card {
+  display: block;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: opacity 0.15s ease;
+}
+
+.issue-card:first-child {
+  padding-top: 0;
+}
+
+.issue-card:last-child {
+  border-bottom: none;
+}
+
+.issue-card:hover,
+.issue-card:focus-visible {
+  opacity: 0.85;
+}
+
+.issue-card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.issue-card-meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
+.issue-card-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.issue-card-title {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.375rem;
+  color: var(--color-text);
+  margin: var(--space-xs) 0;
+  line-height: 1.3;
+}
+
+.issue-card-hook {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-text);
+  opacity: 0.85;
+  margin-bottom: var(--space-xs);
+  max-width: 640px;
+}
+
+.issue-card-readtime {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+/* Read time placeholder for unpublished issues —
+   visually distinct from a real estimate so it never
+   reads as fabricated data. */
+.issue-card-readtime.pending,
+.issue-card-date.pending {
+  color: var(--color-muted);
+  opacity: 0.6;
+}
+
