@@ -16,7 +16,7 @@
   display: block;
   padding: var(--space-md) 0;
   border-bottom: 1px solid var(--color-border);
-  transition: opacity 0.15s ease;
+  transition: border-color 0.15s ease;
 }
 
 .issue-card:first-child {
@@ -27,9 +27,17 @@
   border-bottom: none;
 }
 
-.issue-card:hover,
-.issue-card:focus-visible {
-  opacity: 0.85;
+.issue-card-title,
+.issue-card-hook {
+  opacity: 0.40;
+  transition: opacity 0.15s ease;
+}
+
+.issue-card:hover .issue-card-title,
+.issue-card:hover .issue-card-hook,
+.issue-card:focus-visible .issue-card-title,
+.issue-card:focus-visible .issue-card-hook {
+  opacity: 1;
 }
 
 .issue-card-top {
@@ -201,6 +209,10 @@
   font-size: 0.875rem;
   color: var(--color-muted);
   margin-bottom: var(--space-md);
+}
+
+.hero-status.is-live {
+  color: var(--color-accent);
 }
 
 .hero-cta {
