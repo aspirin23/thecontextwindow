@@ -29,7 +29,7 @@
 
 .issue-card-title,
 .issue-card-hook {
-  opacity: 0.40;
+  opacity: 1.0;
   transition: opacity 0.15s ease;
 }
 
@@ -38,6 +38,12 @@
 .issue-card:focus-visible .issue-card-title,
 .issue-card:focus-visible .issue-card-hook {
   opacity: 1;
+  color: var(--color-accent);
+}
+
+.issue-card:hover .issue-card-title,
+.issue-card:focus-visible .issue-card-title {
+  color: var(--color-accent);
 }
 
 .issue-card-top {
@@ -205,10 +211,11 @@
 }
 
 .hero-status {
+  display: block;
   font-family: var(--font-mono);
   font-size: 0.875rem;
   color: var(--color-muted);
-  margin-bottom: var(--space-md);
+  margin: var(--space-xs) 0 0;
 }
 
 .hero-status.is-live {
