@@ -259,12 +259,15 @@
 .footer-links {
   display: flex;
   gap: var(--space-md);
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .footer-links a {
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--color-accent);
+  display: block;
 }
 
 .footer-links a:hover,

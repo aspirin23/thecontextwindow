@@ -115,7 +115,7 @@
 
 /* ============================================
    END MATTER
-   "Next issue" teaser + back-to-archive link,
+   "Next issue" teaser + back-to-page link,
    between the essay body and the site footer.
    ============================================ */
 
@@ -137,14 +137,15 @@
   color: var(--color-text);
 }
 
-.back-to-archive {
-  display: inline-block;
+.back-to-page {
+  display: block;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--color-accent);
+  margin-bottom: var(--space-sm);
 }
 
-.back-to-archive:hover,
-.back-to-archive:focus-visible {
+.back-to-page:hover,
+.back-to-page:focus-visible {
   text-decoration: underline;
 }
