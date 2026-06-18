@@ -37,14 +37,10 @@
 .issue-card:hover .issue-card-hook,
 .issue-card:focus-visible .issue-card-title,
 .issue-card:focus-visible .issue-card-hook {
-  opacity: 1;
   color: var(--color-accent);
 }
 
-.issue-card:hover .issue-card-title,
-.issue-card:focus-visible .issue-card-title {
-  color: var(--color-accent);
-}
+
 
 .issue-card-top {
   display: flex;
@@ -187,6 +183,13 @@
   opacity: 0.85;
   max-width: 600px;
   margin-bottom: var(--space-md);
+}
+
+.hero-copy:hover .hero-title,
+.hero-copy:hover .hero-hook,
+.hero-copy:focus-within .hero-title,
+.hero-copy:focus-within .hero-hook {
+  color: var(--color-accent);
 }
 
 .hero-meta {
