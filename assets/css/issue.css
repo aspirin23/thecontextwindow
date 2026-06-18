@@ -1,5 +1,150 @@
 /* ============================================
    THE CONTEXT WINDOW — issue.css
    Essay-specific styles — drop cap, body, progress bar
-   STATUS: placeholder — built during "Build an issue page" session
    ============================================ */
+
+/* ============================================
+   READING PROGRESS BAR
+   Thin amber line, 2px. Hidden (width 0, opacity 0)
+   until the reader scrolls — per decision, it should
+   only appear once scrolling into the essay begins,
+   not sit empty-but-visible at the top of the page.
+   Sits directly beneath the sticky terminal bar by
+   being sticky itself at the same top offset, stacked
+   immediately after it in the DOM — see progress.js
+   for the scroll-percentage logic that drives the
+   fill width.
+   ============================================ */
+
+.reading-progress {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+}
+
+.reading-progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--color-accent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.reading-progress-fill.is-visible {
+  opacity: 1;
+}
+
+/* ============================================
+   ISSUE HEADER
+   Badge, title, metadata row above the essay body.
+   ============================================ */
+
+.issue-header {
+  margin-bottom: var(--space-xl);
+}
+
+.issue-header .issue-badge {
+  display: inline-block;
+  margin-bottom: var(--space-md);
+}
+
+.issue-title {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-md);
+}
+
+.issue-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.issue-meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   ISSUE BODY
+   Essay text. Drop cap applies only to the first
+   letter of the first paragraph, per spec — Lora,
+   4rem, weight 700, amber, floated left.
+   ============================================ */
+
+.issue-body {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.8;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.issue-body p {
+  margin-bottom: var(--space-md);
+}
+
+.issue-body p:first-of-type::first-letter {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--color-accent);
+  float: left;
+  padding-right: var(--space-xs);
+  padding-top: 0.1em;
+}
+
+/* Section dividers within the essay body reuse
+   hr.divider from base.css unchanged — no
+   issue-specific override needed. */
+
+/* ============================================
+   END MATTER
+   "Next issue" teaser + back-to-archive link,
+   between the essay body and the site footer.
+   ============================================ */
+
+.issue-end-matter {
+  max-width: 680px;
+  margin: var(--space-xl) auto 0;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.issue-next-teaser {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.issue-next-teaser .next-title {
+  color: var(--color-text);
+}
+
+.back-to-archive {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-accent);
+}
+
+.back-to-archive:hover,
+.back-to-archive:focus-visible {
+  text-decoration: underline;
+}
