@@ -288,6 +288,16 @@
   margin-bottom: var(--space-lg);
 }
 
+.about-content h2.about-section-heading {
+  color: var(--color-accent);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-md);
+}
+
+.about-content hr.divider {
+  margin: var(--space-lg) 0;
+}
+
 .about-content p {
   margin-bottom: var(--space-md);
   max-width: 640px;

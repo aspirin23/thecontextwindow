@@ -20,8 +20,7 @@ Essays are published as numbered **Issues**. See `archive.html` on the live site
 
 ## Links
 
-- LinkedIn: `[PLACEHOLDER]`
-- GitHub: `[PLACEHOLDER]`
+- [LinkedIn](https://www.linkedin.com/in/anindya-chakraborty-iimb/)
 
 ---
 
