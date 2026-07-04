@@ -107,6 +107,7 @@
   float: left;
   padding-right: var(--space-xs);
   padding-top: 0.1em;
+  margin-bottom: -0.1em;
 }
 
 /* Section dividers within the essay body reuse

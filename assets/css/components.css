@@ -16,7 +16,14 @@
   display: block;
   padding: var(--space-md) 0;
   border-bottom: 1px solid var(--color-border);
-  transition: border-color 0.15s ease;
+  border-left: 2px solid transparent;
+  transition: border-color 0.15s ease, padding-left 0.15s ease;
+}
+
+.issue-card:hover,
+.issue-card:focus-visible {
+  border-left-color: var(--color-accent);
+  padding-left: var(--space-sm);
 }
 
 .issue-card:first-child {
@@ -27,16 +34,14 @@
   border-bottom: none;
 }
 
-.issue-card-title,
-.issue-card-hook {
-  opacity: 1.0;
-  transition: opacity 0.15s ease;
+.issue-card-title {
+  transition: color 0.15s ease;
 }
 
+/* Hover: title turns amber, hook stays put — one colour
+   change plus the left-border nudge reads as precise. */
 .issue-card:hover .issue-card-title,
-.issue-card:hover .issue-card-hook,
-.issue-card:focus-visible .issue-card-title,
-.issue-card:focus-visible .issue-card-hook {
+.issue-card:focus-visible .issue-card-title {
   color: var(--color-accent);
 }
 
@@ -80,6 +85,7 @@
   opacity: 0.85;
   margin-bottom: var(--space-xs);
   max-width: 640px;
+  text-wrap: pretty;
 }
 
 .issue-card-readtime {
@@ -149,7 +155,41 @@
    ============================================ */
 
 .hero-issue {
+  position: relative;
+  display: block;
+  overflow: hidden;
   margin-bottom: var(--space-2xl);
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: border-color 0.15s ease;
+}
+
+.hero-issue:hover,
+.hero-issue:focus-visible {
+  border-color: var(--color-accent);
+}
+
+/* Ghost issue number watermark */
+.hero-issue::before {
+  content: '001';
+  position: absolute;
+  top: -0.18em;
+  right: -0.05em;
+  z-index: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(8rem, 22vw, 13rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-text);
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-issue > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-eyebrow {
@@ -183,12 +223,15 @@
   opacity: 0.85;
   max-width: 600px;
   margin-bottom: var(--space-md);
+  text-wrap: pretty;
 }
 
-.hero-copy:hover .hero-title,
-.hero-copy:hover .hero-hook,
-.hero-copy:focus-within .hero-title,
-.hero-copy:focus-within .hero-hook {
+.hero-title {
+  transition: color 0.15s ease;
+}
+
+.hero-issue:hover .hero-title,
+.hero-issue:focus-visible .hero-title {
   color: var(--color-accent);
 }
 

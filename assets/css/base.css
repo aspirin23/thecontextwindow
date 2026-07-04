@@ -12,7 +12,7 @@
   --color-bg: #0D1117;
   --color-text: #E8E6DF;
   --color-accent: #E8832A;
-  --color-muted: #6B7280;
+  --color-muted: #8B93A1;
   --color-border: #1F2937;
   --color-surface: #111827;
 
@@ -76,12 +76,23 @@ body {
   font-size: 1.125rem;
   line-height: 1.7;
   min-height: 100vh;
+}
 
-  /* Subtle graph paper grid — very low opacity, fine lines */
+/* Graph paper grid lives on a fixed pseudo-element so it can
+   fade out down the viewport instead of tiling uniformly —
+   strongest at the top, gone by ~130% of a viewport height. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background-image:
     linear-gradient(rgba(107, 114, 128, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(107, 114, 128, 0.05) 1px, transparent 1px);
   background-size: 32px 32px;
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 130vh);
+  mask-image: linear-gradient(to bottom, black, transparent 130vh);
 }
 
 /* ---- Headings ---- */
@@ -90,6 +101,7 @@ h1, h2, h3, h4 {
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 h1 {
@@ -117,7 +129,9 @@ h2 {
   top: 0;
   z-index: 100;
   width: 100%;
-  background-color: var(--color-surface);
+  background-color: rgba(17, 24, 39, 0.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-accent);
   padding: var(--space-xs) var(--space-md);
   font-family: var(--font-mono);
@@ -146,10 +160,11 @@ h2 {
   50.01%, 100% { opacity: 0; }
 }
 
-/* ---- Section divider — amber pixel line ---- */
+/* ---- Section divider — quiet line, amber stays
+   reserved for interactive/live elements ---- */
 hr.divider {
   border: none;
-  border-top: 1px solid var(--color-accent);
+  border-top: 1px solid var(--color-border);
   width: 100%;
   margin: var(--space-xl) 0;
 }
@@ -159,7 +174,7 @@ hr.divider {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--color-accent);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -167,4 +182,25 @@ hr.divider {
 ::selection {
   background-color: var(--color-accent);
   color: var(--color-bg);
+}
+
+/* ---- Keyboard focus ---- */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
