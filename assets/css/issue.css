@@ -109,6 +109,11 @@
   padding-right: var(--space-xs);
 }
 
+.issue-body p:first-of-type .lede {
+  font-variant: small-caps;
+  letter-spacing: 0.02em;
+}
+
 /* Section dividers within the essay body reuse
    hr.divider from base.css unchanged — no
    issue-specific override needed. */
