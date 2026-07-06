@@ -104,13 +104,9 @@
 .issue-body p:first-of-type::first-letter {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 4rem;
-  line-height: 1;
+  font-size: 5rem;
   color: var(--color-accent);
-  float: left;
   padding-right: var(--space-xs);
-  padding-top: 0.1em;
-  margin-bottom: -0.1em;
 }
 
 /* Section dividers within the essay body reuse
