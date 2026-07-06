@@ -5,20 +5,22 @@
 
 /* ============================================
    READING PROGRESS BAR
-   Thin amber line, 2px. Hidden (width 0, opacity 0)
+   Amber line with a soft amber glow so it reads as
+   its own element rather than merging into the header's
+   1px amber border-bottom. Hidden (width 0, opacity 0)
    until the reader scrolls — per decision, it should
    only appear once scrolling into the essay begins,
    not sit empty-but-visible at the top of the page.
    Sits directly beneath the sticky terminal bar by
-   being sticky itself at the same top offset, stacked
-   immediately after it in the DOM — see progress.js
-   for the scroll-percentage logic that drives the
-   fill width.
+   sticking at an offset equal to the bar's own height
+   (--terminal-bar-height, base.css) — stacked immediately
+   after it in the DOM — see progress.js for the
+   scroll-percentage logic that drives the fill width.
    ============================================ */
 
 .reading-progress {
   position: sticky;
-  top: 0;
+  top: var(--terminal-bar-height);
   z-index: 99;
   width: 100%;
   height: 2px;
@@ -29,6 +31,7 @@
   height: 100%;
   width: 0%;
   background-color: var(--color-accent);
+  box-shadow: 0 0 8px 1px var(--color-accent);
   opacity: 0;
   transition: opacity 0.2s ease;
 }

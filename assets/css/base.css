@@ -24,6 +24,10 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
+  /* Sticky terminal bar height — referenced by .reading-progress
+     so it can stick directly below the bar instead of underneath it. */
+  --terminal-bar-height: 3rem;
+
   /* Fonts */
   --font-head: 'Space Grotesk', sans-serif;
   --font-body: 'Lora', serif;
@@ -129,6 +133,7 @@ h2 {
   top: 0;
   z-index: 100;
   width: 100%;
+  height: var(--terminal-bar-height);
   background-color: rgba(17, 24, 39, 0.85);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
