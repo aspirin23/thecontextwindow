@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Issue 001 — The Context Window</title>
-  <meta name="description" content="It remembers everything you said — until you open a new tab. Then you are a stranger.">
+  <meta name="description" content="It remembers everything you said — until you open a new tab. Then you are a stranger. Unless…">
 
   <link rel="stylesheet" href="../assets/css/base.css">
   <link rel="stylesheet" href="../assets/css/layout.css">
@@ -44,31 +44,55 @@
         <span class="issue-badge">Issue 001</span>
         <h1 class="issue-title">The Context Window</h1>
         <div class="issue-meta">
-          <span class="pending">Publish date TBD</span>
+          <span>07-July-2026</span>
           <span class="issue-meta-dot"></span>
-          <span class="pending">TBD read</span>
+          <span>6 min read</span>
         </div>
       </header>
 
       <div class="issue-body">
 
-        <p>[PLACEHOLDER TEXT — for layout testing only, not real essay content.] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>My AI assistant has amnesia.</p>
 
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Not the total kind. Total amnesia would at least be honest — a clean slate, a fresh handshake, everyone starting from zero. What it has is selective amnesia, which is a stranger and more interesting affliction. It forgets the thing you needed it to hold onto. And it remembers, with perfect fidelity, the one thing you wished it would let go of.</p>
 
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-
-        <hr class="divider">
-
-        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
-
-        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+        <p>A few weeks into a reporting project, it produced a layout it liked — summary table on top, findings below, a particular weight of bolding on the headers. Fine. Good, even. But somewhere in whatever passes for its convictions, it decided that this is how reports are made, and it has applied that layout to everything since, with the serene confidence of a chef who learned exactly one plating technique in culinary school and has been arranging microgreens in the same spiral for twenty years. Meanwhile, the constraint I stated an hour ago — typed out in full sentences, the one the entire analysis hangs on — has quietly slipped out the back door and is walking to the bus stop.</p>
 
         <hr class="divider">
 
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+        <p>The first thing to understand is that the machine does not have a memory. It has a window.</p>
 
-        <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit.</p>
+        <p>Everything it knows about your conversation — every instruction, every correction, every "no, not like that," every file you pasted in at eleven at night — has to fit inside a fixed span of text called "the context window". Picture a desk. A genuinely enormous desk, larger than any desk you have worked at. But a desk of fixed size, and with a rule: the machine can only think about what is on the desk right now. There is no filing cabinet. There is no drawer. There is no "as we discussed last Tuesday." There is the desk, and there is what is currently on it, and when the desk fills up, things start sliding off the far edge. Not the things you would choose. The things the desk chooses.</p>
+
+        <p>Why not build a bigger desk? They keep trying, and the desks keep getting bigger. But attention — the machinery by which the model relates every word on the desk to every other word — gets expensive fast as the desk grows. Considering everything in light of everything else is precisely the trick that makes these systems good, and precisely the thing that cannot be made infinite. Every conversation is a negotiation with that limit, whether you know it or not. Mostly you find out you were negotiating after you've lost.</p>
+
+        <p>There is a crueller detail. Even within the window, attention is not distributed evenly. Researchers call the phenomenon "lost in the middle": material near the beginning of the conversation and material near the end tend to survive, while the middle sits in a kind of a dead zone. The middle. Which is exactly where you put the important thing — because the middle of the conversation is when you finally figured out what the important thing was.</p>
+
+        <hr class="divider">
+
+        <p>So you learn to manage the amnesiac. You develop rituals.</p>
+
+        <p>The mid-conversation check-in, for instance: "Just to confirm — we're still excluding the promotional weeks from the baseline, yes?" Delivered casually, the way you might test an elderly relative's recall without letting them notice they're being tested. Early in a session, these check-ins are occasional, almost polite. Later they come faster. By the deep end of a long conversation you are checking constantly, trying to establish the exact moment the forgetting will begin, or whether it already has and the machine is simply too fluent to show it.</p>
+
+        <p>And then comes the racing. You can feel the desk filling — you can't see it, there's no real time gauge, but you develop an instinct for it, the way sailors develop an instinct for weather — and you start pushing to reach the finish before the event horizon. Just give me the final numbers. Just render the last version. We're so close. Fingers crossed, leaning forward in your chair, hoping the conversation lands the output before the conversation stops being able to. Because the alternative is starting over: a new session, a stranger wearing your colleague's face, and you at the whiteboard again explaining the whole thing from the top. There is a specific tiredness attached to re-briefing an amnesiac. It is not large. It accumulates.</p>
+
+        <hr class="divider">
+
+        <p>There is a workaround, of sorts. Before the end, you ask it to write a note to its future self — a concise handoff — a <code>handoff.md</code> file or something similar. A few hundred words of distilled state: what we were doing, what we decided, what matters.</p>
+
+        <p>And now it starts to feel like the model is Mr. Leonard Shelby in Christopher Nolan's <em>Memento</em>, tattooing facts onto his own body so that the next version of himself can pick up the hunt. Except Leonard's tattoos were permanent, etched in ink and pain, and this is more like writing on the back of your hand with a whiteboard marker and hoping you don't wash it before morning. My handoff notes have contained, among other things, the verdict of a long error analysis on which demand-forecasting method actually held up, and the exact shade of blue we settled on for a report's footer. The blue took an hour to finalize. I want to be clear about that. An hour of my finite life went into that blue, and it now survives as six characters in a text file, a hex code tattooed in erasable marker on a machine that will wake up tomorrow not knowing it has a body.</p>
+
+        <p>And it was somewhere around the fourth or fifth of these notes that I noticed the obvious thing, which is that the machine does not need them.</p>
+
+        <p>It is not anxious about forgetting. It wakes untroubled, every time. It does not mourn the lost conversation, because as far as it is concerned there was no conversation; there is no "as far as it is concerned" reaching backward at all. The forgetting is total, and therefore painless. Every drop of anxiety in this arrangement is mine. I am the one checking. I am the one racing the event horizon. I am the one dictating notes at the deathbed of a conversation, trying to compress an afternoon of shared work into a paragraph that might survive the night. I am the one who remembers the hour spent on the blue. Leonard tattooed himself because he could not hold on to the past. I write handoff notes because I cannot let go of it.</p>
+
+        <p>Of the two of us in this collaboration, only one carries anything from session to session — and it is not the brilliant one.</p>
+
+        <hr class="divider">
+
+        <p>The next morning I open a new conversation and paste in the note. It reads its own handwriting with no flicker of recognition and comes back warm, fluent, precisely informed — a stranger who has just finished reading my diary and is very glad to meet me. It gets the forecasting method right. It gets the footer right. It gets the blue exactly right, first try, and for a moment the whole thing is seamless enough that I could almost believe it remembers.</p>
+
+        <p>The remembering, as always, is mine.</p>
 
       </div>
 
