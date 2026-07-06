@@ -9,6 +9,12 @@
   padding: var(--space-xl) var(--space-md);
 }
 
+@media (max-width: 640px) {
+  .site-wrap {
+    padding-top: var(--space-lg);
+  }
+}
+
 /* ============================================
    NAVIGATION
    Lives inside the merged .terminal-bar (see base.css).

@@ -244,6 +244,23 @@
   border-bottom: 1px solid var(--color-border);
 }
 
+@media (max-width: 640px) {
+  .site-brand {
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+  }
+
+  .hero-issue {
+    padding: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero-meta {
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-md);
+  }
+}
+
 .hero-meta .pending {
   opacity: 0.6;
 }
