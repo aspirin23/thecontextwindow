@@ -34,6 +34,22 @@
   border-bottom: none;
 }
 
+/* Unpublished issues: not a link, no hover affordance */
+.issue-card.is-pending {
+  cursor: default;
+}
+
+.issue-card.is-pending:hover,
+.issue-card.is-pending:focus-visible {
+  border-left-color: transparent;
+  padding-left: 0;
+}
+
+.issue-card.is-pending:hover .issue-card-title,
+.issue-card.is-pending:focus-visible .issue-card-title {
+  color: var(--color-text);
+}
+
 .issue-card-title {
   transition: color 0.15s ease;
 }

@@ -4,7 +4,7 @@ A personal publication by Anindya Chakraborty on AI, and the strange experience 
 
 Hand-coded. No frameworks, no templates, no build tools — semantic HTML, vanilla CSS, vanilla JavaScript, hosted on GitHub Pages.
 
-**Live site:** `[thecontextwindow.net / yourusername.github.io/thecontextwindow]`
+**Live site:** [thecontextwindow.net](https://thecontextwindow.net/)
 
 ## Essays
 
